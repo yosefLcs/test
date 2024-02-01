@@ -1,0 +1,24 @@
+import requests
+
+def make_api_get_request(api_url):
+    try:
+        response = requests.get(api_url)
+        response.raise_for_status()  # Raise an HTTPError for bad responses
+
+        # If the response is in JSON format, you can access the data using response.json()
+        data = response.json()
+        return data
+    except requests.exceptions.RequestException as e:
+        print(f"Error making GET request to API: {e}")
+        return None
+
+if __name__ == "__main__":
+    # Replace this URL with the actual API endpoint you want to query
+    api_url = "https://www.015pbx.net/local/api/json/numbers/get/?auth_username=yosef@lcs-telecom.co.il;auth_password=L@c@s@9t7s3s1eY;number=083750375"
+
+    # Make the API GET request
+    api_data = make_api_get_request(api_url)
+
+    if api_data:
+        print("Data retrieved from the API:")
+        print(api_data)
